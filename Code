@@ -1,5 +1,6 @@
 import numpy as np
 from matplotlib import pyplot
+from matplotlib.animation import FuncAnimation
 plot_every = 100
 # Function to calculate distance
 def distance(x1, y1, x2, y2):
@@ -59,10 +60,26 @@ def main():
              )
         F = F + -(1 / tau) * (F - Feq)
 
+    
+
         if(it%plot_every == 0):
+
+            #pyplot.imshow(np.sqrt(ux**2 +uy**2))
+            #pyplot.pause(.01)
+            #pyplot.cla()
             dfydx = ux[2:, 1:-1] - ux[0:-2, 1:-1]
             dfxdy = uy[1:-1, 2:] - uy[1:-1, 0:-2]
+
             curl = dfydx - dfxdy
+
+            pyplot.imshow(curl, cmap="bwr")
+            pyplot.pause(0.01)
+            pyplot.cla()
+
+if __name__ == "__main__":
+    main()
+
+
 
             pyplot.imshow(curl, cmap="bwr")
             pyplot.pause(0.01)
